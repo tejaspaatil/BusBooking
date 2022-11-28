@@ -17,8 +17,7 @@ import com.mysql.jdbc.*;
  * @author tejas
  */
 public class login_register extends javax.swing.JFrame {
-    Connection con = null;
-    PreparedStatement pst = null;
+    
 
     /**
      * Creates new form login_register
@@ -85,8 +84,15 @@ public class login_register extends javax.swing.JFrame {
         }
     }
     
+    public class connector{
+        public static Connection getConnection() throws Exception{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=(Connection)
+                    DriverManager.getConnection("jdbc:mysql://localhost:3306/login_reg","root","tejas02_");
+            return con;
+        }
+    }
     
-    ResultSet rs;
     
    
     
@@ -351,6 +357,13 @@ public class login_register extends javax.swing.JFrame {
        login_page lp = new login_page();
        lp.setVisible(true);
        this.dispose();
+       
+       try{
+           Connection con=db.connector.getConnection();
+           
+       }catch(Exception e){
+           
+       }
        
        
     }//GEN-LAST:event_btnsignupActionPerformed
